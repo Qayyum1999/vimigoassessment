@@ -6,6 +6,7 @@ class TodoItem {
   final String description;
   final DateTime dueDate;
   bool isCompleted;
+  int order; // add order property
 
   TodoItem({
     required this.id,
@@ -13,6 +14,7 @@ class TodoItem {
     required this.description,
     required this.dueDate,
     this.isCompleted = false,
+    required this.order,
   });
 
   TodoItem.fromJson(Map<String, dynamic> json)
@@ -20,7 +22,8 @@ class TodoItem {
         title = json['title'],
         description = json['description'],
         dueDate = DateTime.parse(json['dueDate']),
-        isCompleted = json['isCompleted'];
+        isCompleted = json['isCompleted'],
+        order = json['order'];
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -36,6 +39,7 @@ class TodoItem {
     String? description,
     DateTime? dueDate,
     bool? isCompleted,
+    int? order,
   }) {
     return TodoItem(
       id: id ?? this.id,
@@ -43,6 +47,7 @@ class TodoItem {
       description: description ?? this.description,
       dueDate: dueDate ?? this.dueDate,
       isCompleted: isCompleted ?? this.isCompleted,
+      order: order ?? this.order,
     );
   }
 }
