@@ -7,6 +7,7 @@ class TodoItem {
   final DateTime dueDate;
   bool isCompleted;
   int order; // add order property
+  bool isDirty;
 
   TodoItem({
     required this.id,
@@ -15,6 +16,7 @@ class TodoItem {
     required this.dueDate,
     this.isCompleted = false,
     required this.order,
+    required this.isDirty,
   });
 
   TodoItem.fromJson(Map<String, dynamic> json)
@@ -23,14 +25,16 @@ class TodoItem {
         description = json['description'],
         dueDate = DateTime.parse(json['dueDate']),
         isCompleted = json['isCompleted'],
-        order = json['order'];
-
+        order = json['order'],
+        isDirty = json['isDirty'];
   Map<String, dynamic> toJson() => {
         'id': id,
         'title': title,
         'description': description,
         'dueDate': dueDate.toIso8601String(),
         'isCompleted': isCompleted,
+        'order': order,
+        'isDirty': isDirty,
       };
 
   TodoItem copyWith({
@@ -40,6 +44,7 @@ class TodoItem {
     DateTime? dueDate,
     bool? isCompleted,
     int? order,
+    bool? isDirty,
   }) {
     return TodoItem(
       id: id ?? this.id,
@@ -48,6 +53,7 @@ class TodoItem {
       dueDate: dueDate ?? this.dueDate,
       isCompleted: isCompleted ?? this.isCompleted,
       order: order ?? this.order,
+      isDirty: isDirty ?? this.isDirty,
     );
   }
 }

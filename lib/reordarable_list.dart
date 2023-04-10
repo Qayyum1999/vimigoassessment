@@ -74,3 +74,28 @@ class ReorderableListScreen extends StatelessWidget {
     );
   }
 }
+class TodoTile extends StatelessWidget {
+  final TodoItem item;
+  final VoidCallback onTap;
+  final ValueChanged<bool?> onCheckboxChanged; // change to nullable
+
+  const TodoTile({
+    Key? key,
+    required this.item,
+     required this.onTap,
+     required this.onCheckboxChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(item.title),
+      subtitle: Text(item.description),
+      trailing: Checkbox(
+        value: item.isCompleted,
+        onChanged: onCheckboxChanged,
+      ),
+      onTap: onTap,
+    );
+  }
+}
